@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 import Document, {
   Html,
   Head,
   Main,
   NextScript,
-  DocumentInitialProps,
-} from "next/document";
-import createEmotionServer from "@emotion/server/create-instance";
-import { createEmotionCache } from "@styles/index";
-import { ServerStyleSheets } from "@mui/styles";
-import { ServerStyleSheet } from "styled-components";
+  DocumentInitialProps
+} from 'next/document';
+import createEmotionServer from '@emotion/server/create-instance';
+import { createEmotionCache } from '@styles/index';
+import { ServerStyleSheets } from '@mui/styles';
+import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: any): Promise<DocumentInitialProps> {
@@ -25,14 +25,14 @@ export default class MyDocument extends Document {
           enhanceApp: (App: any) => (props: any) =>
             sheet.collectStyles(
               materialSheets.collect(<App emotionCache={cache} {...props} />)
-            ),
+            )
         });
 
       const initialProps = await Document.getInitialProps(ctx);
       const emotionStyles = extractCriticalToChunks(initialProps.html);
-      const emotionStyleTags = emotionStyles.styles.map((stl) => (
+      const emotionStyleTags = emotionStyles.styles.map(stl => (
         <style
-          data-emotion={`${stl.key} ${stl.ids.join(" ")}`}
+          data-emotion={`${stl.key} ${stl.ids.join(' ')}`}
           key={stl.key}
           dangerouslySetInnerHTML={{ __html: stl.css }}
         />
@@ -44,8 +44,8 @@ export default class MyDocument extends Document {
           ...React.Children.toArray(initialProps.styles),
           ...emotionStyleTags,
           sheet.getStyleElement(),
-          materialSheets.getStyleElement(),
-        ],
+          materialSheets.getStyleElement()
+        ]
       };
     } finally {
       sheet.seal();

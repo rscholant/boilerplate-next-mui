@@ -1,5 +1,5 @@
-import { ThemeContextProvider } from "@contexts/ThemeContextProvider";
-import React from "react";
+import { ThemeContextProvider } from '@contexts/ThemeContextProvider';
+import React from 'react';
 
 interface Props {
   children: React.ReactNode;
